@@ -1,0 +1,16 @@
+%table.table.table-striped.offset2.span8
+  %thead
+    %tr
+      %th Player Name
+      %th Matches Played
+      %th Matches Won
+      %th Win Percentage
+  %tbody
+    -@topplayers.each do |player|
+      %tr
+        %td=link_to player[:name], player_path(player[:id])
+        %td=player[:matches]
+        %td=player[:matcheswon]
+        %td
+          =player[:mratio]
+          \%
