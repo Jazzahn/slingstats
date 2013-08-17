@@ -6,11 +6,9 @@
       %th Matches Won
       %th Win Percentage
   %tbody
-    -@topplayers.each do |player|
+    -@players.each do |player|
       %tr
-        %td=link_to player[:name], player_path(player[:id])
-        %td=player[:matches]
-        %td=player[:matcheswon]
-        %td
-          =player[:mratio]
-          \%
+        %td=link_to player.name, player
+        %td=player.matches
+        %td=player.matcheswon
+        %td #{player.winning_ratio}%
