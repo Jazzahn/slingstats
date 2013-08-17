@@ -17,4 +17,11 @@ class PlayerStat < ActiveRecord::Base
     self.selfpass ||= 0
   end
 
+  def winning_ratio
+    self.matches == 0 ? 0 : (self.matcheswon / self.matches.to_f) * 100
+  end
+
+  def as_json(options={})
+    super.as_json(options).merge({:winning_ratio => winning_ratio})
+  end
 end
