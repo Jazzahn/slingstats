@@ -1,4 +1,9 @@
 source 'https://rubygems.org'
+# Use Bootstap
+gem 'bootstrap-sass', '~> 2.3'
+
+# Use HAML
+gem 'haml-rails', '~> 0.4'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
