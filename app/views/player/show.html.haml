@@ -1,4 +1,5 @@
 -content_for :pageheader, "#{@player.name} Stats"
+= javascript_include_tag "//www.google.com/jsapi", "chartkick"
 .span2
   Avatar
 .span4
@@ -20,4 +21,4 @@
     %dt Shooting Goals
     %dd=@player.shootgoals
 .span4
-  PieChaaaaaht
+  = pie_chart ({"Football" => 10, "Basketball" => 5})
