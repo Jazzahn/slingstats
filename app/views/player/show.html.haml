@@ -21,4 +21,4 @@
     %dt Shooting Goals
     %dd=@player.shootgoals
 .span4
-  = pie_chart ({"Football" => 10, "Basketball" => 5})
+  = pie_chart ({"Shooting Goals" => @player.shootgoals, "Passes Completed to Teammate" => @player.passes, "Passes Completed to Self" => @player.selfpass, "Throws Resulting in Turnovers" => @player.turnovers})
