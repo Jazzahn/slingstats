@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 # Use Bootstap
 gem 'bootstrap-sass', '~> 2.3'
 
+gem "simple-api-field-control", "~> 0.1.0"
+
 # Use HAML
 gem 'haml-rails', '~> 0.4'
 

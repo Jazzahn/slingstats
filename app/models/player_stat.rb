@@ -1,4 +1,5 @@
 class PlayerStat < ActiveRecord::Base
+  include SimpleAPIFieldControl
   before_save :default_values
 
   def default_values
@@ -21,7 +22,5 @@ class PlayerStat < ActiveRecord::Base
     self.matches == 0 ? 0 : (self.matcheswon / self.matches.to_f) * 100
   end
 
-  def as_json(options={})
-    super.as_json(options).merge({:winning_ratio => winning_ratio})
-  end
+  api_include :winning_ratio
 end
