@@ -4,3 +4,13 @@
 body {
   background: lightgray;
 }
+
+.jumbotron {
+    height: 100px;
+    padding: 40px 0;
+    margin-bottom: 10px;
+    position: relative;
+    border: solid black 1px;
+    background: url("header_bg.png") repeat-y right #20032c;
+    color: white;
+}
