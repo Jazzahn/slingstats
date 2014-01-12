@@ -1,30 +1,23 @@
--content_for :pageheader, "#{@player.name} Stats"
+-content_for :pageheader, "#{@stats[:name]} Stats"
 = javascript_include_tag "//www.google.com/jsapi", "chartkick"
 .span2{:style => "padding-top: 17px"}
   =link_to image_tag("http://fi.somethingawful.com/safs/titles/bd/25/00099618.0001.gif")
 .span4
+  %strong Round Statistics
   %dl.dl-horizontal
-    %dt Matches Played
-    %dd=@player.matches
-    %dt Matches Won
-    %dd=@player.matcheswon
-    %dt Match Win Percentage
-    %dd
-      =@player.winning_ratio
-      \%
     %dt Rounds Played
-    %dd=@player.rounds
+    %dd=@stats[:rounds]
     %dt Rounds Won
-    %dd=@player.roundswon
+    %dd=@stats[:wins]
     %dt Total Goals
-    %dd=@player.goals
-    %dt Shooting Goals
-    %dd=@player.shootgoals
-    %dt Turnovers
-    %dd=@player.turnovers
-    %dt Self Passes
-    %dd=@player.selfpass
-    %dt Passes Completed to Teammate
-    %dd=@player.passes
-.span4
-  = pie_chart ({"Shooting Goals" => @player.shootgoals, "Throws Resulting in Turnovers" => @player.turnovers, "Passes Completed to Teammate" => @player.passes, "Passes Completed to Self" => @player.selfpass}), :library => {:pieSliceText => "none", :pieHole => "0.5", :chartArea => {:top => 17}, :legend => {:position => "none"}, :height => 300}
+    %dd=@stats[:goals]
+    %dt Total Assists
+    %dd=@stats[:assists]
+    %dt Round Win Percentage
+    %dd="#{@stats[:roundwinpercent]}\%"
+    %dt Goals Per Round
+    %dd=@stats[:goalsperround]
+    %dt Assists Per Round
+    %dd=@stats[:assistsperround]
+
+
