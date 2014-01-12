@@ -1,5 +1,9 @@
 class HomeController < ApplicationController
   def index
-    @players = PlayerStat.where("matches >= 20").sort_by(&:winning_ratio).reverse
+    @players = toprounds(20)
+  end
+
+  def toprounds (limit)
+    @players = Users.where("total_rounds >= ?", limit).sort_by(&:winning_round_ratio).reverse
   end
 end
