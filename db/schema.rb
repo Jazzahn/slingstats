@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140112171429) do
+ActiveRecord::Schema.define(version: 20140112201900) do
 
   create_table "player_stats", force: true do |t|
     t.string   "name"
@@ -56,6 +56,10 @@ ActiveRecord::Schema.define(version: 20140112171429) do
     t.string   "alias"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "total_rounds"
+    t.integer  "rounds_won"
+    t.integer  "goals"
+    t.integer  "assists"
   end
 
 end

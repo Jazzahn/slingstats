@@ -43,6 +43,28 @@ def seedroundusers (filename)
   end
 end
 
+def seedstatstouser
+  Users.all.each do |user|
+    rounduser = RoundUsers.where "user_id = ?", user.id
+    win = 0
+    assist = 0
+    goal = 0
+
+    rounduser.each do |r|
+      win += r[:win] ? 1 : 0
+      assist += r[:assist] ? 1 : 0
+      goal += r[:goal] ? 1 : 0
+    end
+    user.total_rounds = rounduser.count
+    user.rounds_won = win
+    user.goals = goal
+    user.assists = assist
+    user.save
+  end
+end
+
+
 seedusers("./stats/users.csv")
 seedrounds("./stats/rounds.csv")
 seedroundusers("./stats/roundUsers.csv")
+seedstatstouser
