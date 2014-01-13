@@ -14,3 +14,21 @@ body {
     background: url("header_bg.png") repeat-y right #20032c;
     color: white;
 }
+
+.strong {
+  font-weight: bold;
+}
+
+.success {
+  color: green;
+  font-weight: bold;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+}
+
+.center {
+  text-align: center;
+}

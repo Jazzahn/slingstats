@@ -1,0 +1,24 @@
+-content_for :pageheader, "#{@data[:mapname]} Round #{@data[:roundid]} Stats"
+.row
+  .span4.offset2
+    placeholder
+  .span2
+    %p.strong Winning Goal
+    %p=link_to @data[:goal], :controller => "player", :action => "show", :name => @data[:goal]
+    -if @data[:assists].count > 0
+      %p.strong Assists
+      -@data[:assists].each do |player|
+        %p=link_to player, :controller => "player", :action => "show", :name => player
+
+.row
+  .span4.offset2
+    %p.strong.center Winners
+    %hr
+    -@data[:winners].each do |winner|
+      %p.center=link_to winner, :controller => "player", :action => "show", :name => winner
+
+  .span4
+    %p.strong.center Losers
+    %hr
+    -@data[:losers].each do |loser|
+      %p.center=link_to loser, :controller => "player", :action => "show", :name => loser
