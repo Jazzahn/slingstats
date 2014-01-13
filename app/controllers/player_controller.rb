@@ -6,16 +6,38 @@ class PlayerController < ApplicationController
     @player = Users.where("lower(alias) = ?", params[:name].downcase).first
     @player ||= Users.where("lower(username) = ?", params[:name].downcase).first
 
+    @lastrounds = RoundUsers.where("user_id = ?", @player.id).order(round_id: :desc).limit(20)
 
 
-    @stats = {:name => @player.username}
-    @stats[:rounds] = @player.total_rounds
-    @stats[:wins] = @player.rounds_won
-    @stats[:goals] = @player.goals
-    @stats[:assists] = @player.assists
-    @stats[:roundwinpercent] = ((@player.rounds_won / @player.total_rounds.to_f) * 100.0).round
-    @stats[:goalsperround] = (@player.goals / @player.total_rounds.to_f).round(2)
-    @stats[:assistsperround] = (@player.assists / @player.total_rounds.to_f).round(2)
+    @stats = {}
+
+    @stats[:stats] = {
+      :name => @player.username,
+      :rounds => @player.total_rounds,
+      :wins => @player.rounds_won,
+      :goals => @player.goals,
+      :assists => @player.assists,
+      :roundwinpercent => ((@player.rounds_won / @player.total_rounds.to_f) * 100.0).round,
+      :goalsperround => (@player.goals / @player.total_rounds.to_f).round(2),
+      :assistsperround => (@player.assists / @player.total_rounds.to_f).round(2)
+    }
+
+    @stats[:rounds] = []
+
+    @lastrounds.each do |round|
+      rounddata = Rounds.find(round.round_id)
+      data = {
+        :mapname => rounddata.map_name,
+        :win => round.win,
+        :assist => round.assist,
+        :goal => round.goal,
+        :duration => rounddata.duration_seconds,
+        :playercount => rounddata.player_count,
+        :createdat => rounddata.created_at,
+        :roundid => round.round_id
+      }
+      @stats[:rounds] << data
+    end
     respond_with @stats
   end
 end

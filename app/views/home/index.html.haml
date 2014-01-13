@@ -1,15 +1,17 @@
 -content_for :pageheader, "Top Players"
-%table.table.table-striped.offset2.span8
-  %thead
-    %tr
-      %th Player Name
-      %th Rounds Played
-      %th Rounds Won
-      %th Win Percentage
-  %tbody
-    -@players.each do |player|
-      %tr
-        %td=link_to player.username, :controller => "player", :action => "show", :name => player.username
-        %td=player.total_rounds
-        %td=player.rounds_won
-        %td #{player.winning_round_ratio}%
+.row
+  .span12
+    %table.table.table-striped.offset2.span8
+      %thead
+        %tr
+          %th Player Name
+          %th Rounds Played
+          %th Rounds Won
+          %th Win Percentage
+      %tbody
+        -@players.each do |player|
+          %tr
+            %td=link_to player.username, :controller => "player", :action => "show", :name => player.username
+            %td=player.total_rounds
+            %td=player.rounds_won
+            %td #{player.winning_round_ratio}%

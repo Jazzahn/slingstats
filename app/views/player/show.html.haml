@@ -1,23 +1,62 @@
--content_for :pageheader, "#{@stats[:name]} Stats"
+-content_for :pageheader, "#{@stats[:stats][:name]} Stats"
 = javascript_include_tag "//www.google.com/jsapi", "chartkick"
-.span2{:style => "padding-top: 17px"}
-  =link_to image_tag("http://fi.somethingawful.com/safs/titles/bd/25/00099618.0001.gif")
-.span4
-  %strong Round Statistics
-  %dl.dl-horizontal
-    %dt Rounds Played
-    %dd=@stats[:rounds]
-    %dt Rounds Won
-    %dd=@stats[:wins]
-    %dt Total Goals
-    %dd=@stats[:goals]
-    %dt Total Assists
-    %dd=@stats[:assists]
-    %dt Round Win Percentage
-    %dd="#{@stats[:roundwinpercent]}\%"
-    %dt Goals Per Round
-    %dd=@stats[:goalsperround]
-    %dt Assists Per Round
-    %dd=@stats[:assistsperround]
+.row
+  .span2{:style => "padding-top: 17px"}
+    =link_to image_tag("http://fi.somethingawful.com/safs/titles/bd/25/00099618.0001.gif")
+  .span4
+    %table.table.table-condensed
+      %caption.strong Round Statistics
+      %tr
+        %td.strong Rounds Played
+        %td=@stats[:stats][:rounds]
+      %tr
+        %td.strong Rounds Won
+        %td=@stats[:stats][:wins]
+      %tr
+        %td.strong Total Goals
+        %td=@stats[:stats][:goals]
+      %tr
+        %td.strong Total Assists
+        %td=@stats[:stats][:assists]
+      %tr
+        %td.strong Round Win Percentage
+        %td="#{@stats[:stats][:roundwinpercent]}\%"
+      %tr
+        %td.strong Goals Per Round
+        %td=@stats[:stats][:goalsperround]
+      %tr
+        %td.strong Assists Per Round
+        %td=@stats[:stats][:assistsperround]
+
+  .span4{:style => "text-align: center"}
+    %strong Actions Per Round Win
+    = pie_chart ({"Goals" => @stats[:stats][:goals], "Assists" => @stats[:stats][:assists], "No Goals or Asssists" => @stats[:stats][:rounds] - @stats[:stats][:goals] - @stats[:stats][:assists]}), :library => {:pieSliceText => "none", :pieHole => "0.5", :chartArea => {:top => 17}, :legend => {:position => "none"}, :height => 300}
+
+.row
+  .span12
+    %table.table.offset2.span8
+      %caption.strong Last 20 Rounds
+      %thead
+        %tr
+          %th Map Name
+          %th Datetime
+          %th Win
+          %th Assist
+          %th Goal
+          %th Duration
+          %th Player Count
+      %tbody
+        -@stats[:rounds].each do |round|
+          %tr
+            %td=link_to round[:mapname], :controller => "round_stats", :action => "show", :id => round[:roundid]
+            %td=round[:createdat]
+            %td{:class => [round[:win] ? "success" : "error"]}
+              =round[:win] ? "Yes" : "No"
+            %td{:class => [round[:assist] ? "success" : "error"]}
+              =round[:assist] ? "Yes" : "No"
+            %td{:class => [round[:goal] ? "success" : "error"]} 
+              =round[:goal] ? "Yes" : "No"
+            %td="#{round[:duration].round(2)} secs"
+            %td=round[:playercount]
 
 
