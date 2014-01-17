@@ -3,10 +3,10 @@ class PlayerController < ApplicationController
   respond_to :html, :json
 
   def show
-    @player = Users.where("lower(alias) = ?", params[:name].downcase).first
-    @player ||= Users.where("lower(username) = ?", params[:name].downcase).first
+    @player = User.where("lower(alias) = ?", params[:name].downcase).first
+    @player ||= User.where("lower(username) = ?", params[:name].downcase).first
 
-    @lastrounds = RoundUsers.where("user_id = ?", @player.id).order(round_id: :desc).limit(20)
+    @lastrounds = RoundUser.where("user_id = ?", @player.id).order(round_id: :desc).limit(20)
 
 
     @stats = {}
@@ -25,7 +25,7 @@ class PlayerController < ApplicationController
     @stats[:rounds] = []
 
     @lastrounds.each do |round|
-      rounddata = Rounds.find(round.round_id)
+      rounddata = Round.find(round.round_id)
       data = {
         :mapname => rounddata.map_name,
         :win => round.win,
