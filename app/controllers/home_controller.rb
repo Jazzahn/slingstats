@@ -4,6 +4,6 @@ class HomeController < ApplicationController
   end
 
   def toprounds (limit)
-    @players = Users.where("total_rounds >= ?", limit).sort_by(&:winning_round_ratio).reverse
+    @players = User.where("total_rounds >= ?", limit).sort_by(&:winning_round_ratio).reverse
   end
 end
