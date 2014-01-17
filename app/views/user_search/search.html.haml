@@ -1,0 +1,10 @@
+-content_for :pageheader, "Player Search Results"
+.row
+  .span12
+    %table.table.table-condensed
+      %thead
+        %th Username
+      %tbody
+        -@results.each do |user|
+          %tr
+            %td=link_to user.username, :controller => "player", :action => "show", :name => user.username
