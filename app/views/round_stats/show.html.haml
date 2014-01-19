@@ -1,14 +1,13 @@
 -content_for :pageheader, "#{@data[:mapname]} Round #{@data[:roundid]} Stats"
+=image_tag "maps/#{@data[:mapname]}.png", :style => "position: absolute; left: 10px; top: 190px; float: left;"
 .row
-  .span4.offset2
-    placeholder
-  .span2
-    %p.strong Winning Goal
-    %p=link_to @data[:goal], :controller => "player", :action => "show", :name => @data[:goal]
+  .span2.offset5
+    %p.strong.center Winning Goal
+    %p.center=link_to @data[:goal], :controller => "player", :action => "show", :name => @data[:goal]
     -if @data[:assists].count > 0
-      %p.strong Assists
+      %p.strong.center Assists
       -@data[:assists].each do |player|
-        %p=link_to player, :controller => "player", :action => "show", :name => player
+        %p.center=link_to player, :controller => "player", :action => "show", :name => player
 
 .row
   .span4.offset2
