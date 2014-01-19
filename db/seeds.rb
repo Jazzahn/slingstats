@@ -9,7 +9,7 @@ require "csv"
 
 def seedusers (filename)
   CSV.foreach(filename, {:headers => true}) do |row|
-    user = Users.new({:id => row[0], :username => row[1], :created_at => row[2]})
+    user = User.new({:id => row[0], :username => row[1], :created_at => row[2]})
     if row[3] != "NULL"
       user.alias = row[3]
     end
@@ -19,7 +19,7 @@ end
 
 def seedrounds (filename)
   CSV.foreach(filename, {:headers => true}) do |row|
-    round = Rounds.new({:id => row[0],
+    round = Round.new({:id => row[0],
                         :created_at => row[1],
                         :server_name_code => row[2],
                         :duration_seconds => row[3],
@@ -33,7 +33,7 @@ end
 
 def seedroundusers (filename)
   CSV.foreach(filename, {:headers => true}) do |row|
-    rounduser = RoundUsers.new({:id => row[0],
+    rounduser = RoundUser.new({:id => row[0],
                                 :user_id => row[1],
                                 :round_id => row[2],
                                 :win => row[3],
@@ -44,8 +44,8 @@ def seedroundusers (filename)
 end
 
 def seedstatstouser
-  Users.all.each do |user|
-    rounduser = RoundUsers.where "user_id = ?", user.id
+  User.all.each do |user|
+    rounduser = RoundUser.where "user_id = ?", user.id
     win = 0
     assist = 0
     goal = 0
