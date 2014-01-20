@@ -33,7 +33,7 @@ class PlayerController < ApplicationController
         :goal => round.goal,
         :duration => rounddata.duration_seconds,
         :playercount => rounddata.player_count,
-        :createdat => rounddata.created_at,
+        :createdat => rounddata.created_at.strftime("%s"),
         :roundid => round.round_id
       }
       @stats[:rounds] << data

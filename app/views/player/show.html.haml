@@ -49,7 +49,7 @@
         -@stats[:rounds].each do |round|
           %tr
             %td=link_to round[:mapname], :controller => "round_stats", :action => "show", :id => round[:roundid]
-            %td=round[:createdat]
+            %td.timestamp=round[:createdat]
             %td{:class => [round[:win] ? "success" : "error"]}
               =round[:win] ? "Yes" : "No"
             %td{:class => [round[:assist] ? "success" : "error"]}
