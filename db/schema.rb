@@ -11,23 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140117020013) do
+ActiveRecord::Schema.define(version: 20140121220157) do
 
   create_table "player_stats", force: true do |t|
     t.string   "name"
-    t.integer  "rounds"
-    t.integer  "roundswon"
-    t.integer  "matches"
-    t.integer  "matcheswon"
-    t.integer  "goals"
-    t.integer  "shootgoals"
-    t.integer  "assists"
-    t.integer  "throws"
-    t.integer  "passes"
-    t.integer  "turnovers"
-    t.integer  "tackles"
-    t.integer  "tacklesagst"
-    t.integer  "selfpass"
+    t.integer  "rounds",      default: 0
+    t.integer  "roundswon",   default: 0
+    t.integer  "matches",     default: 0
+    t.integer  "matcheswon",  default: 0
+    t.integer  "goals",       default: 0
+    t.integer  "shootgoals",  default: 0
+    t.integer  "assists",     default: 0
+    t.integer  "throws",      default: 0
+    t.integer  "passes",      default: 0
+    t.integer  "turnovers",   default: 0
+    t.integer  "tackles",     default: 0
+    t.integer  "tacklesagst", default: 0
+    t.integer  "selfpass",    default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
