@@ -3,21 +3,21 @@
 .row
   .span2.offset5
     %p.strong.center Winning Goal
-    %p.center=link_to @data[:goal], :controller => "player", :action => "show", :name => @data[:goal]
+    %p.center=link_to @data[:goal], user_path(@data[:goal])
     -if @data[:assists].count > 0
       %p.strong.center Assists
       -@data[:assists].each do |player|
-        %p.center=link_to player, :controller => "player", :action => "show", :name => player
+        %p.center=link_to player, user_path(player)
 
 .row
   .span4.offset2
     %p.strong.center Winners
     %hr
     -@data[:winners].each do |winner|
-      %p.center=link_to winner, :controller => "player", :action => "show", :name => winner
+      %p.center=link_to winner, user_path(winner)
 
   .span4
     %p.strong.center Losers
     %hr
     -@data[:losers].each do |loser|
-      %p.center=link_to loser, :controller => "player", :action => "show", :name => loser
+      %p.center=link_to loser, user_path(loser)

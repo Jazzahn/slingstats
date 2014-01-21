@@ -11,7 +11,7 @@
       %tbody
         -@players.each do |player|
           %tr
-            %td=link_to player.username, :controller => "player", :action => "show", :name => player.username
+            %td=link_to player.username, player
             %td=player.total_rounds
             %td=player.rounds_won
             %td #{player.winning_round_ratio}%
