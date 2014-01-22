@@ -4,6 +4,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def not_found(txt = 'Not Found')
-  raise ActionController::RoutingError.new(txt)
-end
+    raise ActionController::RoutingError.new(txt)
+  end
 end
