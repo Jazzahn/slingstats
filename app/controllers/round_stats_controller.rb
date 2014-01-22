@@ -4,7 +4,7 @@ class RoundStatsController < ApplicationController
 
   def show
     round = Round.find(params[:id])
-    roundusers = RoundUser.where("round_id = ?", round.id)
+    roundusers = RoundUser.where(round_id: round.id)
 
     @data = {
       :goal => nil,

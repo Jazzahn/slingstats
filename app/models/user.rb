@@ -17,5 +17,9 @@ class User < ActiveRecord::Base
     end
   end
 
+  def to_param
+    username
+  end
+
   api_include :winning_round_ratio
 end

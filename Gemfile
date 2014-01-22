@@ -10,7 +10,7 @@ gem "simple-api-field-control", "~> 0.1.0"
 gem 'haml-rails', '~> 0.4'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0'
+gem 'rails', '4.0.2'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'

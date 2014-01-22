@@ -3,10 +3,9 @@ class PlayerController < ApplicationController
   respond_to :html, :json
 
   def show
-    @player = User.where("lower(alias) = ?", params[:name].downcase).first
-    @player ||= User.where("lower(username) = ?", params[:name].downcase).first
+    @player = User.find_by(alias: params[:username]) || User.find_by(username: params[:username]) || not_found('Player not found')
 
-    @lastrounds = RoundUser.where("user_id = ?", @player.id).order(round_id: :desc).limit(20)
+    @lastrounds = RoundUser.where(user_id: @player.id).order(round_id: :desc).limit(20)
 
 
     @stats = {}

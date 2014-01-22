@@ -1,6 +1,6 @@
 Slingstats::Application.routes.draw do
   root 'home#index'
-  get 'player/:name', to: 'player#show', as: 'users'
+  get 'player/:username', to: 'player#show', as: 'user'
   get 'round/:id', to: 'round_stats#show', as: 'rounds'
   get 'search/', to: 'user_search#search'
   # The priority is based upon order of creation: first created -> highest priority.
